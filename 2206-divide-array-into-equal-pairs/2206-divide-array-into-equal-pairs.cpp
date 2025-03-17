@@ -1,16 +1,40 @@
 class Solution {
 public:
     bool divideArray(vector<int>& nums) {
-        unordered_map<int, int> freq;
+        int num_max = 0;
+
         for(int n:nums){
-            freq[n]++;
+            num_max = max(n, num_max);
         }
 
-        for(auto& elem:freq){
-            if(elem.second%2!=0){
+        vector<bool> freq(num_max+1, false);
+
+        for(int n:nums){
+            freq[n] = !freq[n];
+        }
+
+        for(int n:nums){
+            if(freq[n]){
                 return false;
             }
         }
-        return true; 
+        return true;
     }
 };
+
+// class Solution {
+// public:
+//     bool divideArray(vector<int>& nums) {
+//         unordered_map<int, int> freq;
+//         for(int n:nums){
+//             freq[n]++;
+//         }
+
+//         for(auto& elem:freq){
+//             if(elem.second%2!=0){
+//                 return false;
+//             }
+//         }
+//         return true; 
+//     }
+// };
