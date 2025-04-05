@@ -1,47 +1,43 @@
 class Solution {
 public:
-    bool can_place(int i, int q, vector<vector<bool>>& board, int n){
-        for(int j = q - 1; j >= 0; j--){
-            if(board[i][j]) return false;
+    bool can_place(int row, int col, vector<string>& board, int n){
+        // Check same column
+        for(int i = 0; i < row; i++){
+            if(board[i][col] == 'Q') return false;
         }
 
-        for(int j = q - 1, i2 = i - 1; j >= 0 && i2 >= 0; j--, i2--){
-            if(board[i2][j]) return false;
+        // Check upper-left diagonal
+        for(int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--){
+            if(board[i][j] == 'Q') return false;
         }
 
-        for(int j = q - 1, i2 = i + 1; j >= 0 && i2 < n; j--, i2++){
-            if(board[i2][j]) return false;
+        // Check upper-right diagonal
+        for(int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++){
+            if(board[i][j] == 'Q') return false;
         }
 
         return true;
     }
-    void place(vector<vector<bool>>& board, int q, int n, vector<vector<string>>& result){
-        if(q==n){
-            vector<string> config;
-            for(int i = 0; i < n; i++){
-                string row = "";
-                for(int j = 0; j < n; j++){
-                    row += (board[i][j] ? 'Q' : '.');
-                }
-                config.push_back(row);
-            }
-            result.push_back(config);
+
+    void place(int row, int n, vector<string>& board, vector<vector<string>>& result){
+        if(row == n){
+            result.push_back(board); // ✅ no need to convert
             return;
         }
 
-        for(int i=0; i<n; i++){
-            if(!can_place(i, q, board, n)) continue;
+        for(int col = 0; col < n; col++){
+            if(!can_place(row, col, board, n)) continue;
 
-            board[i][q] = true;
-            place(board, q+1, n, result);
-            board[i][q] = false;
+            board[row][col] = 'Q';
+            place(row + 1, n, board, result);
+            board[row][col] = '.'; // backtrack
         }
     }
 
     vector<vector<string>> solveNQueens(int n) {
-        vector<vector<bool>> board(n, vector<bool>(n, false));
+        vector<string> board(n, string(n, '.'));
         vector<vector<string>> result;
-        place(board, 0, n, result);
+        place(0, n, board, result);
         return result;
     }
 };
