@@ -9,15 +9,8 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
- 
+
 class Solution {
-public:
-    TreeNode* prev = nullptr;
-
-    bool isValidBST(TreeNode* root) {
-        return inOrder(root);
-    }
-
 private:
     bool inOrder(TreeNode* node) {
         if (!node) return true;
@@ -33,4 +26,11 @@ private:
         // Right subtree
         return inOrder(node->right);
     }
+public:
+    TreeNode* prev = nullptr;
+
+    bool isValidBST(TreeNode* root) {
+        return inOrder(root);
+    }
+
 };
