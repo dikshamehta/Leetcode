@@ -15,7 +15,6 @@ public:
                 totaltime += (p + m - 1) / m; //converting one of them to double to have floating division
             }
 
-            cout<<totaltime<<" ";
             if(totaltime <= h){
                 res = m;
                 r = m-1;
