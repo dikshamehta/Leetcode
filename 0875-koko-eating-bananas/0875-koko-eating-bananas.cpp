@@ -12,7 +12,7 @@ public:
             long long totaltime = 0;
 
             for(int p : piles){
-                totaltime += ceil(p / (double) m); //converting one of them to double to have floating division
+                totaltime += (p + m - 1) / m; //converting one of them to double to have floating division
             }
 
             cout<<totaltime<<" ";
