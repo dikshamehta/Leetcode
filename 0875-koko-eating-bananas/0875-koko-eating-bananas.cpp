@@ -9,7 +9,7 @@ public:
         while(l<=r){
             int m = (l+r)/2;
 
-            long long totaltime = 0;
+            long totaltime = 0;
 
             for(int p : piles){
                 totaltime += (p + m - 1) / m; //converting one of them to double to have floating division
