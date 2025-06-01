@@ -15,16 +15,22 @@ public:
         int l = 0;
         int h = values.size() - 1;
 
+        // to store the string of timestamp if exist or for the previous one
         string result = "";
 
         while(l<=h){
             int m = (l + h)/2;
 
+            // if the mid value is less that timestamp, 
+            // save it as result just in case current m is timestamp_prev
             if(values[m].first <= timestamp){
                 result = values[m].second;
+
+                // move l to m+1 because timestamp is on right side
                 l = m+1;
             }
             else{
+                // simple shrink from right and no need to update the result.
                 h = m-1;
             }
         }
