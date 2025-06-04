@@ -1,25 +1,34 @@
+// directly using lower_bound function
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        int low = 0; 
-        int res = nums.size();
-        int high = res-1;
-
-        while(low<=high){
-            int mid = (low+high)/2;
-
-            if(nums[mid]>=target){
-                res = mid;
-                high = mid - 1;
-            }
-            else{
-                low = mid+1;
-            }
-        }
-
-        return res;
+        return lower_bound(nums.begin(), nums.end(), target) - nums.begin();
     }
 };
+
+// Used Lower Bound Concept
+// class Solution {
+// public:
+//     int searchInsert(vector<int>& nums, int target) {
+//         int low = 0; 
+//         int res = nums.size();
+//         int high = res-1;
+
+//         while(low<=high){
+//             int mid = (low+high)/2;
+
+//             if(nums[mid]>=target){
+//                 res = mid;
+//                 high = mid - 1;
+//             }
+//             else{
+//                 low = mid+1;
+//             }
+//         }
+
+//         return res;
+//     }
+// };
 
 // O(log(n))
 // class Solution {
