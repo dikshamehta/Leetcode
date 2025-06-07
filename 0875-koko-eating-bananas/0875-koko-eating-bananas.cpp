@@ -12,7 +12,12 @@ public:
             long totaltime = 0;
 
             for(int p : piles){
-                totaltime += ceil(p/(double) m); //converting one of them to double to have floating division
+                
+                //totaltime += ceil(p/(double) m); //converting one of them to double to have floating division
+
+                // (pile + mid - 1) / mid is a clever way to round up the division to the nearest integer.
+                totaltime += (p + m - 1) / m; // Equivalent to Math.ceil((double)pile / mid). Calculates how many hours it takes for one pile.
+
             }
 
             if(totaltime <= h){
