@@ -14,9 +14,10 @@ public:
             if (nums[low] == nums[mid] && nums[mid] == nums[high]) {
                 low++;
                 high--;
+                continue;
             }
 
-            else if(nums[low]<=nums[mid]){
+            if(nums[low]<=nums[mid]){
                 // left is sorted
                 if(nums[low]<=target && target<nums[mid]){
                     // target is in the left half
