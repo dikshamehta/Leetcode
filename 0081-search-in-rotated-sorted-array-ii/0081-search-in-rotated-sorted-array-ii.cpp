@@ -1,3 +1,7 @@
+// note when you get question on duplicates try to solve it for unique
+// then see where it fails
+
+// TC = O(logn)
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
